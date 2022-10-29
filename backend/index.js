@@ -11,15 +11,23 @@ app.use(cors())
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
 app.use(cookieSession({
     name: 'session',
     keys: [process.env.SESSION_SECRET],
+    sameSite: 'strict',
     maxAge: 24 * 60 * 1000
 }))
+
 app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true
 }))
+
+app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+
 
 
 // Controllers & Routes
